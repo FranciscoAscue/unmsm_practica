@@ -7,6 +7,12 @@ wget https://raw.githubusercontent.com/FranciscoAscue/unmsm_practica/main/ngs_co
 ```bash
 conda env create -f ngs_conda.yml
 ```
+## SRA toolkit
+
+```bash
+wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.0.7/sratoolkit.3.0.7-ubuntu64.tar.gz
+```
+
 ## Alignment to reference genome
 
 ```bash
@@ -24,6 +30,7 @@ samtools index -b -@ 2 file_sort.bam
 samtools view -@ 4 -b -h file_sort.bam NC_001224.1 > mito.bam
 ```
 #### optional transforms to fastq files
+url : https://broadinstitute.github.io/picard/explain-flags.html 
 
 ```bash
 samtools fastq -f 2 -1 mapped_1.fq -2 mapped_2.fq file_sort.bam
