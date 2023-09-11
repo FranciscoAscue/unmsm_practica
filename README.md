@@ -7,7 +7,8 @@ wget https://raw.githubusercontent.com/FranciscoAscue/unmsm_practica/main/ngs_co
 ```bash
 conda env create -f ngs_conda.yml
 ```
-## 
+## Alignment to reference genome
+
 ```bash
 bwa mem -t 4 -o file.sam genome_reference.fasta file_1.fastq file_2.fastq
 
@@ -16,5 +17,21 @@ samtools view -b -S -o file.bam -@ 3 file.sam
 samtools sort -o file_sort.bam --output-fmt BAM -@ 2 file.bam
 
 samtools index -b -@ 2 file_sort.bam
-``
+```
+### Separate reads from specific Chrmosome or Mitogenome 
+
+```bash
+samtools view -@ 4 -b -h file_sort.bam NC_001224.1 > mito.bam
+```
+#### optional transforms to fastq files
+
+```bash
+samtools fastq -f 2 -1 mapped_1.fq -2 mapped_2.fq file_sort.bam
+samtools fastq -f 8 -1 unmapped_1.fq -2 unmapped_2.fq file_sort.bam
+```
+### Consensus fasta from bam file 
+
+```bash
+samtools mpileup -A -d 0 -Q 0 mito.bam | ivar consensus -p mito -q 10 -t 0.6 -n N -m 20
+```
 
