@@ -1,0 +1,12 @@
+name: ngs
+channels:
+  - defaults
+  - bioconda
+  - conda-forge
+dependencies:
+  - python=3
+  - samtools=1.9
+  - pandas=0.23.0=py36_1
+  - bwa=0.7.17=pl5.22.0_2
+  - bowtie2=2.4.4
+  - ivar=1.1_beta
