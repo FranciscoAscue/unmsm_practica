@@ -13,7 +13,7 @@ conda env create -f ngs_conda.yml
 wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.0.7/sratoolkit.3.0.7-ubuntu64.tar.gz
 ```
 
-## Create work directory
+## Create working directory
 
 ```bash
 mkdir -p mitocondria/{data,results,scripts}
@@ -53,6 +53,8 @@ samtools fastq -f 8 -1 unmapped_1.fq -2 unmapped_2.fq file_sort.bam
 ```bash
 samtools mpileup -A -d 0 -Q 0 mito.bam | ivar consensus -p mito -q 10 -t 0.6 -n N -m 20
 ```
+
+### link igv user guide
 
 ## Online annotation of mitogenome
 
