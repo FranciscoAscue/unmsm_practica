@@ -12,7 +12,11 @@ conda env create -f ngs_conda.yml
 ```bash
 wget https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/3.0.7/sratoolkit.3.0.7-ubuntu64.tar.gz
 ```
+## Download reference genome 
 
+```bash
+curl -OJX GET "https://api.ncbi.nlm.nih.gov/datasets/v2alpha/genome/accession/GCF_000146045.2/download?include_annotation_type=GENOME_FASTA,GENOME_GFF,RNA_FASTA,CDS_FASTA,PROT_FASTA,SEQUENCE_REPORT&filename=GCF_000146045.2.zip" -H "Accept: application/zip"
+```
 ## Alignment to reference genome
 
 ```bash
@@ -41,4 +45,11 @@ samtools fastq -f 8 -1 unmapped_1.fq -2 unmapped_2.fq file_sort.bam
 ```bash
 samtools mpileup -A -d 0 -Q 0 mito.bam | ivar consensus -p mito -q 10 -t 0.6 -n N -m 20
 ```
+
+## Online annotation of mitogenome
+
+https://chlorobox.mpimp-golm.mpg.de/geseq.html
+
+http://mitos.bioinf.uni-leipzig.de/index.py 
+
 
